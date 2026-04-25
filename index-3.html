@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ckb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>هێڵی ئارامی - ئاژانسی پاراستن | حکومەتی هەرێمی کوردستان</title>
+    <!-- Font Awesome 6 (Free Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font: Vazir for Kurdish/Arabic friendly -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #0a2f2c 0%, #0a1f2c 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
+            direction: rtl;
+        }
+
+        /* background animated pattern & waves */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" opacity="0.08"><path fill="none" stroke="%23ffffff" stroke-width="1.2" d="M0 0 L1200 1200 M1200 0 L0 1200 M600 0 L600 1200 M0 600 L1200 600 M300 0 L300 1200 M900 0 L900 1200 M0 300 L1200 300 M0 900 L1200 900"></path><circle cx="600" cy="600" r="200" stroke="white" fill="none" stroke-width="1"/><circle cx="600" cy="600" r="350" stroke="white" fill="none" stroke-width="0.7"/></svg>');
+            background-repeat: repeat;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* floating particles effect */
+        body::after {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 40%, rgba(255,215,0,0.05) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .main-card {
+            position: relative;
+            z-index: 2;
+            max-width: 760px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(0px);
+            border-radius: 68px;
+            border-radius: 3rem;
+            box-shadow: 0 35px 75px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+            overflow: hidden;
+            transition: transform 0.25s ease;
+        }
+
+        .main-card:hover {
+            transform: scale(1.01);
+        }
+
+        /* header with kurdish emblem style */
+        .hero {
+            background: linear-gradient(135deg, #1F5E50 0%, #0D473C 100%);
+            padding: 2rem 2rem 1.8rem 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::after {
+            content: "☀";
+            font-size: 100px;
+            position: absolute;
+            bottom: -30px;
+            left: 20px;
+            opacity: 0.12;
+            font-family: monospace;
+            pointer-events: none;
+        }
+
+        .logo-icon {
+            font-size: 56px;
+            background: rgba(255,255,240,0.2);
+            width: 90px;
+            height: 90px;
+            line-height: 90px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            border: 2px solid rgba(255,215,0,0.7);
+            box-shadow: 0 12px 22px rgba(0,0,0,0.2);
+        }
+
+        .logo-icon i {
+            font-size: 48px;
+            color: #FFD966;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .sub {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 500;
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* content */
+        .content {
+            padding: 2rem 2rem 2.5rem;
+            background: #ffffff;
+        }
+
+        .free-call {
+            background: linear-gradient(120deg, #E6F7F1, #FFFFFF);
+            border-right: 8px solid #F5B042;
+            padding: 1rem 1.2rem;
+            border-radius: 28px;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+        }
+
+        .free-text {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .free-text i {
+            font-size: 40px;
+            color: #1F5E50;
+        }
+
+        .free-text span {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1D3E3A;
+        }
+
+        .free-number {
+            background: #0F3E38;
+            padding: 0.6rem 1.3rem;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-family: monospace;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,0.2), 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        .free-number i {
+            font-size: 1.5rem;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            justify-content: center;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 1rem;
+            border-radius: 80px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            text-align: center;
+            backdrop-filter: blur(2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-6px);
+            box-shadow: 0 18px 28px rgba(37,211,102,0.3);
+        }
+
+        .btn-viber {
+            background: #7360F2;
+            color: white;
+        }
+
+        .btn-viber:hover {
+            background: #5E4ED8;
+            transform: translateY(-6px);
+            box-shadow: 0 18px 28px rgba(115,96,242,0.35);
+        }
+
+        .btn-call {
+            background: linear-gradient(105deg, #E67E22, #F39C12);
+            color: white;
+            margin-top: 0.5rem;
+            width: 100%;
+            font-size: 1.5rem;
+            padding: 1rem;
+            border-radius: 60px;
+            box-shadow: 0 12px 22px rgba(230,126,34,0.3);
+        }
+
+        .btn-call:hover {
+            background: linear-gradient(105deg, #D35400, #E67E22);
+            transform: translateY(-4px);
+        }
+
+        .btn i {
+            font-size: 1.9rem;
+        }
+
+        .info-note {
+            background: #F8FAFE;
+            padding: 1rem;
+            border-radius: 32px;
+            text-align: center;
+            margin-top: 1.8rem;
+            font-size: 0.85rem;
+            color: #2C5A4F;
+            border: 1px solid rgba(31,94,80,0.2);
+        }
+
+        .info-note i {
+            margin-left: 6px;
+            color: #E67E22;
+        }
+
+        footer {
+            background: #F1F3F5;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.75rem;
+            color: #2C6A5C;
+            border-top: 1px solid #ddd;
+        }
+
+        @media (max-width: 550px) {
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+            .btn {
+                font-size: 1rem;
+                padding: 0.8rem;
+            }
+            .free-number {
+                font-size: 1.2rem;
+            }
+            .free-text span {
+                font-size: 1rem;
+            }
+            .content {
+                padding: 1.5rem;
+            }
+            .main-card {
+                border-radius: 2rem;
+            }
+        }
+
+        .badge-kurd {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.2);
+            padding: 5px 12px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-card">
+        <div class="hero">
+            <div class="logo-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h1>هێڵی ئارامی</h1>
+            <p style="font-weight: 500; margin-bottom: 8px;">ئاژانسی پاراستنی حکومەتی هەرێمی کوردستان</p>
+            <div class="badge-kurd">
+                <i class="fas fa-hand-peace"></i> <span> پاڵپشتی بەردەوام | 24/7 </span>
+            </div>
+        </div>
+        <div class="content">
+            <!-- خۆڕایی پەیوەندی لە هەر شوێنێکی کوردستان و عێراق -->
+            <div class="free-call">
+                <div class="free-text">
+                    <i class="fas fa-phone-volume fa-fw"></i>
+                    <span>پەیوەندی خۆڕایی لە هەر شوێنی کوردستان و عێراقەوە</span>
+                </div>
+                <div class="free-number">
+                    <i class="fas fa-phone-alt"></i> 123
+                </div>
+            </div>
+
+            <!-- WhatsApp & Viber direct click buttons -->
+            <div class="contact-grid">
+                <a href="https://wa.me/9647506451515?text=سڵاو%20،%20بە%20هێڵی%20ئارامی%20ئاژانسی%20پاراستن%20پەیوەندی%20دەکەم" class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> واتسئاپ
+                    <span style="font-size:0.9rem; direction: ltr;">07506451515</span>
+                </a>
+                <a href="viber://contact?number=9647506451515" class="btn btn-viber" target="_blank">
+                    <i class="fab fa-viber"></i> فایبەر
+                    <span style="font-size:0.9rem; direction: ltr;">07506451515</span>
+                </a>
+            </div>
+
+            <!-- direct phone call using tel (free from iraq/kurdistan region but standard tel) -->
+            <a href="tel:123" class="btn btn-call" style="display: flex; justify-content: center;">
+                <i class="fas fa-headset"></i> پەیوەندی خۆڕایی 123
+            </a>
+
+            <div class="info-note">
+                <i class="fas fa-info-circle"></i> ژمارەی واتسئاپ و فایبەری فەرمی هێڵی ئارامی: <strong dir="ltr">0750 645 1515</strong><br>
+                کلیک لەسەر ئایکۆنی واتسئاپ یان فایبەر دەتباتە پەیوەندی ڕاستەوخۆ. ژمارەی خۆڕایی 123 لە هەر شوێنێکی عێراق و هەرێمەوە.
+            </div>
+        </div>
+        <footer>
+            <i class="fas fa-shield-hart"></i> هێڵی ئارامی ئاژانسی پاراستن - پاراستنی گشت و بەرەنگاربوونەوەی تاوان
+        </footer>
+    </div>
+
+    <!-- small script to ensure viber deep link works smoothly on mobile -->
+    <script>
+        (function() {
+            const viberBtn = document.querySelector('.btn-viber');
+            if(viberBtn) {
+                viberBtn.addEventListener('click', function(e) {
+                    // allow default behavior for viber://contact deep link
+                });
+            }
+            console.log("هێڵی ئارامی - بەخێربێن");
+        })();
+    </script>
+</body>
+</html>
